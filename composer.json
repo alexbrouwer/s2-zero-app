@@ -1,8 +1,8 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "alexbrouwer/s2-zero-app",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "Symfony2 Application",
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
