@@ -29,7 +29,6 @@
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
         "elao/web-profiler-extra-bundle" : "~2.3@dev",
-        "egulias/listeners-debug-command-bundle": "@stable",
         "mockery/mockery": "@stable"
     },
     "scripts": {
