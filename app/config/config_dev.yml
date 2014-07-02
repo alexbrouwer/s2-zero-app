@@ -20,17 +20,22 @@ monolog:
         console:
             type:   console
             bubble: false
-        # uncomment to get logging in your browser
-        # you may have to allow bigger header sizes in your Web server configuration
-        #firephp:
-        #    type:   firephp
-        #    level:  info
-        #chromephp:
-        #    type:   chromephp
-        #    level:  info
+        firephp:
+            type:   firephp
+            level:  info
+        chromephp:
+            type:   chromephp
+            level:  info
 
 assetic:
     use_controller: %use_assetic_controller%
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+services:
+    twig.text_extension:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - name: twig.extension
+
