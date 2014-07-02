@@ -24,7 +24,8 @@
         "jms/serializer-bundle": "@stable",
         "alexandresalome/assetic-extra-bundle": "@stable",
         "nelmio/api-doc-bundle": "@stable",
-        "willdurand/rest-extra-bundle": "@stable"
+        "willdurand/rest-extra-bundle": "@stable",
+        "lunetics/locale-bundle": "@stable"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

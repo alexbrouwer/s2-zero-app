@@ -38,6 +38,18 @@ assetic:
 alex_assetic_extra:
     asset_directory: true
 
+lunetics_locale:
+    allowed_locales:
+        - %locale%
+    guessing_order:
+        - session
+        - cookie
+        - browser
+        - query
+        - router
+    cookie:
+        set_on_change: true
+
 # Doctrine Configuration
 doctrine:
     dbal:

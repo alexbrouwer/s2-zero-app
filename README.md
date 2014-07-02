@@ -21,12 +21,12 @@ What's inside?
 Defaults:
 
   * Twig is the only configured template engine;
-
   * Doctrine ORM/DBAL is configured;
-
   * Swiftmailer is configured;
-
   * Annotations for everything are enabled.
+  * Translations are turned on
+  * Both REST and 'normal' routes are supported
+  * REST data can be serialized to JSON (default) or XML
 
 It comes pre-configured with the following bundles:
 
@@ -48,6 +48,7 @@ It comes pre-configured with the following bundles:
   * [AlexAsseticExtraBundle][13] - Automatically move assets (not css/js) to a custom folder and adapt css file accordingly
   * [DoctrineFixturesBundle][14] (in dev/test env) - Provides Data fixtures for testing purposes
   * [WebProfilerExtraBundle][15] (in dev/test env) - Adds Routing, Container and Twig to profile toolbar
+  * [LuneticsLocaleBundle][16] - Adds locale guessing
 
 [1]:  http://symfony.com/doc/2.4/bundles/SensioFrameworkExtraBundle/index.html
 [2]:  http://symfony.com/doc/2.4/book/doctrine.html
@@ -58,9 +59,10 @@ It comes pre-configured with the following bundles:
 [7]:  http://symfony.com/doc/2.4/cookbook/assetic/asset_management.html
 [8]:  http://symfony.com/doc/2.4/bundles/SensioGeneratorBundle/index.html
 [9]:  https://github.com/FriendsOfSymfony/FOSRestBundle/blob/master/Resources/doc/index.md
-[10]:  https://github.com/willdurand/BazingaRestExtraBundle/blob/master/Resources/doc/index.md
-[11]:  http://jmsyst.com/bundles/JMSSerializerBundle
-[12]:  https://github.com/nelmio/NelmioApiDocBundle/blob/master/Resources/doc/index.md
-[13]:  https://github.com/alexandresalome/assetic-extra-bundle
-[14]:  http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html
-[15]:  https://github.com/Elao/WebProfilerExtraBundle
+[10]: https://github.com/willdurand/BazingaRestExtraBundle/blob/master/Resources/doc/index.md
+[11]: http://jmsyst.com/bundles/JMSSerializerBundle
+[12]: https://github.com/nelmio/NelmioApiDocBundle/blob/master/Resources/doc/index.md
+[13]: https://github.com/alexandresalome/assetic-extra-bundle
+[14]: http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html
+[15]: https://github.com/Elao/WebProfilerExtraBundle
+[16]: https://github.com/lunetics/LocaleBundle/blob/master/Resources/doc/index.markdown
