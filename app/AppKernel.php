@@ -22,7 +22,8 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Alex\AsseticExtraBundle\AlexAsseticExtraBundle(),
-            new Acme\BlaBundle\AcmeBlaBundle(),
+            new Zero\ApiBaseBundle\ZeroApiBaseBundle(),
+            new Zero\UserBundle\ZeroUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

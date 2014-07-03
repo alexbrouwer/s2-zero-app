@@ -26,6 +26,7 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
 # Assetic Configuration
 assetic:
@@ -105,7 +106,7 @@ fos_rest:
             html: true
         failed_validation: HTTP_BAD_REQUEST
         default_engine: twig
-    disable_csrf_role: ROLE_API
+    disable_csrf_role: IS_AUTHENTICATED_ANONYMOUSLY
     allowed_methods_listener: true
     routing_loader:
         include_format: false
@@ -114,7 +115,8 @@ fos_rest:
     exception:
         codes:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
-            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
+            'Doctrine\ORM\OptimisticLockException': 409,
+            'Zero\ApiBaseBundle\Exception\InvalidFormException': 400
         messages:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
     serializer:

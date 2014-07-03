@@ -1,0 +1,4 @@
+zero_user_api:
+    type: rest
+    resource: Zero\UserBundle\Controller\UserController
+    name_prefix: api_

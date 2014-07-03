@@ -1,4 +1,14 @@
-acme_bla:
-    resource: "@AcmeBlaBundle/Resources/config/routing.yml"
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+zero_user:
+    resource: "@ZeroUserBundle/Resources/config/routing.yml"
     prefix:   /
 
+#### API ####
+
+api_zero_user:
+    type: rest
+    resource: "@ZeroUserBundle/Resources/config/routing-api.yml"
+    prefix:   /api/
