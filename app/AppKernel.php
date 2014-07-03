@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Alex\AsseticExtraBundle\AlexAsseticExtraBundle(),
             new Zero\ApiBaseBundle\ZeroApiBaseBundle(),
+            new Zero\ApiDocBundle\ZeroApiDocBundle(),
             new Zero\UserBundle\ZeroUserBundle(),
         );
 

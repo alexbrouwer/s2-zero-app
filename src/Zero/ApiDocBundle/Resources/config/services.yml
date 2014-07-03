@@ -1,0 +1,6 @@
+parameters:
+
+services:
+    zero_api_doc.formatter.html_formatter:
+        class: Zero\ApiDocBundle\Formatter\HtmlFormatter
+        parent: nelmio_api_doc.formatter.html_formatter

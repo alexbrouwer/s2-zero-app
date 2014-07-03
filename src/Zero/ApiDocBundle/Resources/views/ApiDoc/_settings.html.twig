@@ -1,0 +1,64 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="modal-settings-label">Settings</h4>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="body_format">Body format:</label>
+
+                    <div class="col-sm-9">
+                        <select name="bodyFormat" id="body_format" class="form-control">
+                            <option value="x-www-form-urlencoded"{{ data.bodyFormat == 'form' ? ' selected' : '' }}>Form Data</option>
+                            <option value="application/json"{{ data.bodyFormat == 'json' ? ' selected' : '' }}>json</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="request_format">Request format:</label>
+
+                    <div class="col-sm-9">
+                        <select name="requestFormat" id="request_format" class="form-control">
+                            {% for format, header in data.requestFormats %}
+                                <option value="{{ header }}"{{ data.defaultRequestFormat == format ? ' selected' : '' }}>{{ format }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                {% if data.authentication and data.authentication.delivery in ['query', 'http_basic', 'header'] %}
+                    <div class="form-group">
+
+                        <label class="control-label col-sm-3" for="api_key">API key:</label>
+
+                        <div class="col-sm-9">
+                            <input name="apiKey" type="text" class="form-control" placeholder="api key" id="api_key">
+                        </div>
+                    </div>
+                {% endif %}
+                {% if data.authentication and data.authentication.delivery in ['http_basic'] %}
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="api_pass">API pass:</label>
+
+                        <div class="col-sm-9">
+                            <input name="apiPass" type="text" class="form-control" placeholder="api pass" id="api_pass">
+                        </div>
+                    </div>
+                {% endif %}
+                {% if data.authentication and data.authentication.custom_endpoint %}
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="api_endpoint">API endpoint:</label>
+
+                        <div class="col-sm-9">
+                            <input name="apiEndpoint" type="text" class="form-control" placeholder="api endpoint" id="api_endpoint">
+                        </div>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>

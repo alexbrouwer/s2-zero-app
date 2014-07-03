@@ -1,0 +1,96 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a data-toggle="collapse" href="#request-<%= id %>">
+            Request
+        </a>
+    </div>
+    <div id="request-<%= id %>" class="request-panel panel-collapse collapse in">
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <fieldset class="request-content">
+                        <legend>Content</legend>
+
+                        <div class="form-group">
+                            <samp>
+                                <textarea class="content form-control" rows="10"
+                                          placeholder="Content set here will override the parameters that do not match the url"></textarea>
+                            </samp>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group form-inline">
+                        <input type="text" class="key keep-disabled form-control" value="Content-Type"
+                               disabled="disabled"/>
+                        <span>=</span>
+                        <input type="text" class="value content-type-value form-control" placeholder="Value"/>
+                        <button type="button" class="set-content-type btn btn-warning">Set header</button>
+                        <small>Replaces header if set</small>
+                    </div>
+
+                    <fieldset
+                    <% if(parameters.length == 0) { %>class="hidden"<% } %>>
+                    <legend>Parameters</legend>
+                    <div class="parameters"></div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-6">
+                    <fieldset>
+                        <legend>Headers</legend>
+                        <div class="headers"></div>
+                    </fieldset>
+                    <fieldset
+                    <% if(requirements.length == 0) { %>class="hidden"<% } %>>
+                    <legend>Requirements</legend>
+                    <div class="requirements"></div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Filters</legend>
+                        <div class="filters"></div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Send request"/>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a data-toggle="collapse" href="#response-<%= id %>">
+            Response
+        </a>
+    </div>
+    <div id="response-<%= id %>" class="response-panel panel-collapse collapse">
+        <div class="panel-body">
+            <fieldset>
+                <legend>
+                    Request
+                    <button type="button" class="req-to-expand btn btn-sm btn-link">Expand</button>
+                    <button type="button" class="req-to-collapse btn btn-sm btn-link hidden">Collapse</button>
+                </legend>
+                <pre class="request-headers collapse">None</pre>
+            </fieldset>
+            <fieldset>
+                <legend>
+                    Response headers
+                    <button type="button" class="res-to-expand btn btn-sm btn-link">Expand</button>
+                    <button type="button" class="res-to-collapse btn btn-sm btn-link hidden">Collapse</button>
+                </legend>
+                <pre class="response-headers collapse">None</pre>
+            </fieldset>
+            <fieldset>
+                <legend>Response body
+                    <button type="button" class="to-raw btn btn-sm btn-link">Raw</button>
+                    <button type="button" class="to-prettify btn btn-sm btn-link hidden">Prettify</button>
+                </legend>
+                <pre class="response-body prettyprint">Empty</pre>
+            </fieldset>
+        </div>
+    </div>
+</div>
