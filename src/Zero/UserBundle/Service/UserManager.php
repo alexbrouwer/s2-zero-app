@@ -3,7 +3,7 @@
 
 namespace Zero\UserBundle\Service;
 
-use Zero\UserBundle\Model\UserInterface;
+use Zero\UserBundle\Entity\User;
 use Zero\ApiBaseBundle\Manager\AbstractManager;
 
 class UserManager extends AbstractManager
@@ -11,7 +11,7 @@ class UserManager extends AbstractManager
     /**
      * @param array $parameters
      *
-     * @return UserInterface
+     * @return User
      */
     public function create(array $parameters)
     {
@@ -21,49 +21,49 @@ class UserManager extends AbstractManager
     }
 
     /**
-     * @param UserInterface $user
+     * @param User $user
      * @param array $parameters
      *
-     * @return UserInterface
+     * @return User
      */
-    public function update(UserInterface $user, array $parameters)
+    public function update(User $user, array $parameters)
     {
         return $this->processForm($user, $parameters, self::METHOD_PUT);
     }
 
     /**
-     * @param UserInterface $user
+     * @param User $user
      * @param array $parameters
      *
-     * @return UserInterface
+     * @return User
      */
-    public function patch(UserInterface $user, array $parameters)
+    public function patch(User $user, array $parameters)
     {
         return $this->processForm($user, $parameters, self::METHOD_PATCH);
     }
 
     /**
-     * @param string $userName
+     * @param int $id
      *
-     * @return UserInterface|null
+     * @return User|null
      */
-    public function get($userName)
+    public function get($id)
     {
-        return $this->getRepository()->findOneBy(array('username' => $userName));
+        return $this->getRepository()->find($id);
     }
 
     /**
-     * @param UserInterface $user
+     * @param User $user
      *
      * @return void
      */
-    public function delete(UserInterface $user)
+    public function delete(User $user)
     {
         $this->deleteEntity($user);
     }
 
     /**
-     * @return UserInterface[]
+     * @return User[]
      */
     public function findBy()
     {

@@ -87,7 +87,7 @@ class AbstractManager implements ManagerInterface
      *
      * @return FormInterface
      */
-    protected function createForm($entity, $method = self::METHOD_PUT)
+    public function createForm($entity, $method = self::METHOD_PUT)
     {
         if (is_string($this->form)) {
             return $this->formFactory->createNamed($this->form, 'form', $entity, array('method' => $method));
@@ -107,7 +107,7 @@ class AbstractManager implements ManagerInterface
      *
      * @throws InvalidFormException if parameters are not valid
      */
-    protected function processForm($entity, array $parameters, $method = self::METHOD_PUT)
+    public function processForm($entity, array $parameters, $method = self::METHOD_PUT)
     {
         $form           = $this->createForm($entity, $method);
         $formParameters = $this->getFormParameters($form, $parameters);
@@ -143,7 +143,7 @@ class AbstractManager implements ManagerInterface
      *
      * @return object New instance of entityClass
      */
-    protected function createEntity()
+    public function createEntity()
     {
         return new $this->entityClass;
     }
@@ -155,7 +155,7 @@ class AbstractManager implements ManagerInterface
      *
      * @return object entity
      */
-    protected function saveEntity($entity)
+    public function saveEntity($entity)
     {
         $this->om->persist($entity);
         $this->om->flush($entity);
@@ -170,7 +170,7 @@ class AbstractManager implements ManagerInterface
      *
      * @return void
      */
-    protected function deleteEntity($entity)
+    public function deleteEntity($entity)
     {
         $this->om->remove($entity);
         $this->om->flush($entity);
@@ -181,7 +181,7 @@ class AbstractManager implements ManagerInterface
      *
      * @return ObjectRepository
      */
-    protected function getRepository()
+    public function getRepository()
     {
         return $this->om->getRepository($this->entityClass);
     }

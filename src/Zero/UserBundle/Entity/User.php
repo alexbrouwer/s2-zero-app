@@ -2,14 +2,15 @@
 
 namespace Zero\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Zero\UserBundle\Model\UserInterface;
 
 /**
  * User
  */
-class User implements UserInterface
+class User
 {
+
     /**
      * @var integer
      */
@@ -30,11 +31,23 @@ class User implements UserInterface
      */
     private $displayName;
 
+    /**
+     * @var User\Group[]|ArrayCollection
+     */
+    private $groups;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->groups = new ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -45,6 +58,7 @@ class User implements UserInterface
      * Set username
      *
      * @param string $username
+     *
      * @return User
      */
     public function setUsername($username)
@@ -57,7 +71,7 @@ class User implements UserInterface
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -68,6 +82,7 @@ class User implements UserInterface
      * Set email
      *
      * @param string $email
+     *
      * @return User
      */
     public function setEmail($email)
@@ -80,7 +95,7 @@ class User implements UserInterface
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -91,6 +106,7 @@ class User implements UserInterface
      * Set displayName
      *
      * @param string $displayName
+     *
      * @return User
      */
     public function setDisplayName($displayName)
@@ -103,10 +119,48 @@ class User implements UserInterface
     /**
      * Get displayName
      *
-     * @return string 
+     * @return string
      */
     public function getDisplayName()
     {
         return $this->displayName;
+    }
+
+    /**
+     * Get Groups
+     *
+     * @return User\Group[]
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * Add a group
+     *
+     * @param User\Group $group
+     *
+     * @return User
+     */
+    public function addGroup(User\Group $group)
+    {
+        $this->groups->add($group);
+
+        return $this;
+    }
+
+    /**
+     * Remove a group
+     *
+     * @param User\Group $group
+     *
+     * @return User
+     */
+    public function removeGroup(User\Group $group)
+    {
+        $this->groups->removeElement($group);
+
+        return $this;
     }
 }

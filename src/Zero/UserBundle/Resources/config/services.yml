@@ -3,8 +3,17 @@ parameters:
     zero_user.user.form.class: Zero\UserBundle\Form\UserType
     zero_user.user.manager.class: Zero\UserBundle\Service\UserManager
 
+    zero_user.user.group.entity.class: Zero\UserBundle\Entity\User\Group
+    zero_user.user.group.form.class: Zero\UserBundle\Form\User\GroupType
+    zero_user.user.group.manager.class: Zero\UserBundle\Service\User\GroupManager
+
 services:
     zero_user.user.manager:
         class: %zero_user.user.manager.class%
         parent: zero_api_base.manager.abstract
         arguments: [%zero_user.user.entity.class%, %zero_user.user.form.class%]
+
+    zero_user.user.group.manager:
+        class: %zero_user.user.group.manager.class%
+        parent: zero_api_base.manager.abstract
+        arguments: [%zero_user.user.group.entity.class%, %zero_user.user.group.form.class%]

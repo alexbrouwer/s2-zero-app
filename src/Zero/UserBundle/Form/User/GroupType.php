@@ -1,12 +1,12 @@
 <?php
 
-namespace Zero\UserBundle\Form;
+namespace Zero\UserBundle\Form\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserType extends AbstractType
+class GroupType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,15 +15,16 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text')
-            ->add('email', 'email')
-            ->add('displayName')
-            ->add('groups', 'entity', array(
-                    'class' => 'Zero\UserBundle\Entity\User\Group',
-                    'property' => 'id',
-                    'multiple' => true,
-                    'required' => true,
-                ));
+            ->add('name', 'text')
+            ->add(
+                'roles',
+                'collection',
+                array(
+                    'type'         => 'text',
+                    'allow_add'    => true,
+                    'allow_delete' => true
+                )
+            );
     }
 
     /**
@@ -33,7 +34,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'Zero\UserBundle\Entity\User'
+                'data_class' => 'Zero\UserBundle\Entity\User\Group'
             )
         );
     }
@@ -43,6 +44,6 @@ class UserType extends AbstractType
      */
     public function getName()
     {
-        return 'user';
+        return 'user_group';
     }
 }
