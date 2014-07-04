@@ -115,6 +115,12 @@
   <exec executable="phpunit" failonerror="true">
     <arg value="--coverage-clover" />
     <arg value="${basedir}/build/logs/clover.xml" />
+    <arg value="--coverage-html" />
+    <arg value="${basedir}/build/coverage" />
+    <arg value="--coverage-crap4j" />
+    <arg value="${basedir}/build/logs/crap4j.xml" />
+    <arg value="--log-junit" />
+    <arg value="${basedir}/build/logs/junit.xml" />
   </exec>
  </target>
 </project>
