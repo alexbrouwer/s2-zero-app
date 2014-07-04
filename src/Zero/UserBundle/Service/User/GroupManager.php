@@ -15,31 +15,31 @@ class GroupManager extends AbstractManager
      */
     public function create(array $parameters)
     {
-        $Group = $this->createEntity();
+        $group = $this->createEntity();
 
-        return $this->processForm($Group, $parameters, self::METHOD_POST);
+        return $this->processForm($group, $parameters, self::METHOD_POST);
     }
 
     /**
-     * @param Group $Group
+     * @param Group $group
      * @param array $parameters
      *
      * @return Group
      */
-    public function update(Group $Group, array $parameters)
+    public function update(Group $group, array $parameters)
     {
-        return $this->processForm($Group, $parameters, self::METHOD_PUT);
+        return $this->processForm($group, $parameters, self::METHOD_PUT);
     }
 
     /**
-     * @param Group $Group
+     * @param Group $group
      * @param array $parameters
      *
      * @return Group
      */
-    public function patch(Group $Group, array $parameters)
+    public function patch(Group $group, array $parameters)
     {
-        return $this->processForm($Group, $parameters, self::METHOD_PATCH);
+        return $this->processForm($group, $parameters, self::METHOD_PATCH);
     }
 
     /**
@@ -53,13 +53,13 @@ class GroupManager extends AbstractManager
     }
 
     /**
-     * @param Group $Group
+     * @param Group $group
      *
      * @return void
      */
-    public function delete(Group $Group)
+    public function delete(Group $group)
     {
-        $this->deleteEntity($Group);
+        $this->deleteEntity($group);
     }
 
     /**
