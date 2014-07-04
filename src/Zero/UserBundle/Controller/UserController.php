@@ -235,7 +235,7 @@ class UserController extends BaseController implements ClassResourceInterface
 
         $groupManager = $this->container->get('zero_user.user.group.manager');
         $group = $groupManager->get($groupId);
-        if(!$group instanceof User\Group) {
+        if (!$group instanceof User\Group) {
             throw new NotFoundHttpException(sprintf("Group '%s' not found", $groupId));
         }
 
@@ -274,7 +274,7 @@ class UserController extends BaseController implements ClassResourceInterface
 
         $groupManager = $this->container->get('zero_user.user.group.manager');
         $group = $groupManager->get($groupId);
-        if(!$group instanceof User\Group) {
+        if (!$group instanceof User\Group) {
             throw new NotFoundHttpException(sprintf("Group '%s' not found", $groupId));
         }
 
