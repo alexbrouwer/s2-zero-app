@@ -4,7 +4,7 @@
 namespace Zero\ApiBaseBundle\Exception;
 
 
-interface ExceptionInterface 
+interface ExceptionInterface
 {
 
 } 
