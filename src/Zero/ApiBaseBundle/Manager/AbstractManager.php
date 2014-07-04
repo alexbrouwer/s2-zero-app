@@ -31,7 +31,7 @@ class AbstractManager implements ManagerInterface
     /**
      * @var ObjectManager
      */
-    protected $om;
+    protected $objectManager;
 
     /**
      * @var FormFactoryInterface
@@ -60,7 +60,7 @@ class AbstractManager implements ManagerInterface
      */
     public function setObjectManager(ObjectManager $objectManager)
     {
-        $this->om = $objectManager;
+        $this->objectManager = $objectManager;
 
         return $this;
     }
@@ -157,8 +157,8 @@ class AbstractManager implements ManagerInterface
      */
     public function saveEntity($entity)
     {
-        $this->om->persist($entity);
-        $this->om->flush($entity);
+        $this->objectManager->persist($entity);
+        $this->objectManager->flush($entity);
 
         return $entity;
     }
@@ -172,8 +172,8 @@ class AbstractManager implements ManagerInterface
      */
     public function deleteEntity($entity)
     {
-        $this->om->remove($entity);
-        $this->om->flush($entity);
+        $this->objectManager->remove($entity);
+        $this->objectManager->flush($entity);
     }
 
     /**
@@ -183,6 +183,6 @@ class AbstractManager implements ManagerInterface
      */
     public function getRepository()
     {
-        return $this->om->getRepository($this->entityClass);
+        return $this->objectManager->getRepository($this->entityClass);
     }
 }
