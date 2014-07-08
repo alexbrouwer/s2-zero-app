@@ -64,7 +64,7 @@ class Group
      * @param array $roles
      * @return Group
      */
-    public function setRoles($roles)
+    public function setRoles(array $roles)
     {
         $this->roles = $roles;
 
