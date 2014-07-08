@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Zero\ApiBaseBundle\Exception\InvalidFormException;
 
-class AbstractManager implements ManagerInterface
+class EntityManager implements ManagerInterface
 {
     const METHOD_PUT = 'PUT';
 
@@ -56,7 +56,7 @@ class AbstractManager implements ManagerInterface
      *
      * @param ObjectManager $objectManager
      *
-     * @return AbstractManager
+     * @return EntityManager
      */
     public function setObjectManager(ObjectManager $objectManager)
     {
@@ -70,7 +70,7 @@ class AbstractManager implements ManagerInterface
      *
      * @param FormFactoryInterface $formFactory
      *
-     * @return AbstractManager
+     * @return EntityManager
      */
     public function setFormFactory(FormFactoryInterface $formFactory)
     {
@@ -139,13 +139,24 @@ class AbstractManager implements ManagerInterface
     }
 
     /**
+     * Get the entity class
+     *
+     * @return string
+     */
+    public function getEntityClass()
+    {
+        return $this->entityClass;
+    }
+
+    /**
      * Create entity
      *
      * @return object New instance of entityClass
      */
     public function createEntity()
     {
-        return new $this->entityClass;
+        $class = $this->getEntityClass();
+        return new $class;
     }
 
     /**

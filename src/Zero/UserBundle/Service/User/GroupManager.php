@@ -4,9 +4,9 @@
 namespace Zero\UserBundle\Service\User;
 
 use Zero\UserBundle\Entity\User\Group;
-use Zero\ApiBaseBundle\Manager\AbstractManager;
+use Zero\ApiBaseBundle\Manager\EntityManager;
 
-class GroupManager extends AbstractManager
+class GroupManager extends EntityManager
 {
     /**
      * @param array $parameters

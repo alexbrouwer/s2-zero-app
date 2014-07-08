@@ -1,5 +1,5 @@
 parameters:
-    zero_api_base.manager.abstract.class: Zero\ApiBaseBundle\Manager\AbstractManager
+    zero_api_base.manager.abstract.class: Zero\ApiBaseBundle\Manager\EntityManager
     zero_api_base.listener.invalid_form_exception.class: Zero\ApiBaseBundle\Listener\InvalidFormExceptionListener
 
 services:

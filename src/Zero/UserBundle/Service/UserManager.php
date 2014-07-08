@@ -4,9 +4,9 @@
 namespace Zero\UserBundle\Service;
 
 use Zero\UserBundle\Entity\User;
-use Zero\ApiBaseBundle\Manager\AbstractManager;
+use Zero\ApiBaseBundle\Manager\EntityManager;
 
-class UserManager extends AbstractManager
+class UserManager extends EntityManager
 {
     /**
      * @param array $parameters
