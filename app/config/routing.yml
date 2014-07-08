@@ -1,6 +1,6 @@
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /api/doc
+    prefix:   /api/docs
 
 zero_user:
     resource: "@ZeroUserBundle/Resources/config/routing.yml"
