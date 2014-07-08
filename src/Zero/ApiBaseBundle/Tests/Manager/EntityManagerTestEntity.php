@@ -3,8 +3,7 @@
 
 namespace Zero\ApiBaseBundle\Tests\Manager;
 
-
-class EntityManagerTestEntity 
+class EntityManagerTestEntity
 {
 
 } 
