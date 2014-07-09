@@ -11,7 +11,7 @@ class ApiDocControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/api/docs/');
+        $client->request('GET', '/api/docs/');
 
         $this->assertTrue($client->getResponse()->isSuccessful());
     }
