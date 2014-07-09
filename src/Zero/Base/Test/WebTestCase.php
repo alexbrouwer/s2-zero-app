@@ -174,12 +174,12 @@ class WebTestCase extends BaseWebTestCase
      */
     protected function isBackupUpToDate(array $classNames, $backup)
     {
-        $backupLastModifiedDateTime = new \DateTime();
-        $backupLastModifiedDateTime->setTimestamp(filemtime($backup));
+        $backupLastModified = new \DateTime();
+        $backupLastModified->setTimestamp(filemtime($backup));
 
         foreach ($classNames as &$className) {
-            $fixtureLastModifiedDateTime = $this->getFixtureLastModified($className);
-            if ($backupLastModifiedDateTime < $fixtureLastModifiedDateTime) {
+            $fixtureLastModified = $this->getFixtureLastModified($className);
+            if ($backupLastModified < $fixtureLastModified) {
                 return false;
             }
         }
