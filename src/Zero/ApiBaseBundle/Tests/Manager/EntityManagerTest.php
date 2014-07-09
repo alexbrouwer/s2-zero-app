@@ -3,6 +3,7 @@
 
 namespace Zero\ApiBaseBundle\Tests\Manager;
 
+use Zero\ApiBaseBundle\Exception\InvalidFormException;
 use Zero\ApiBaseBundle\Manager\EntityManager;
 
 class EntityManagerTest extends \PHPUnit_Framework_TestCase
@@ -101,7 +102,7 @@ class EntityManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \Zero\ApiBaseBundle\Exception\InvalidFormException
      */
-    public function testProcessFormShouldThrowInvalidFormException()
+    public function testProcessFormShouldThrowInvalidFormExceptionOnIncompleteData()
     {
         $formName = 'test-form';
         $formData = array();
@@ -120,6 +121,36 @@ class EntityManagerTest extends \PHPUnit_Framework_TestCase
         $entityManager->setFormFactory($formFactory);
 
         $entityManager->processForm($entity, $formData);
+    }
+
+    public function testProcessFormShouldNotThrowInvalidFormExceptionOnIncompleteDataWithPatch()
+    {
+        $formName = 'test-form';
+        $formData = array();
+
+        $entityManager = new EntityManager(self::ENTITY_CLASS, self::FORM_CLASS);
+        $entity = $entityManager->createEntity();
+
+        $form = \Mockery::mock('Symfony\Component\Form\FormInterface');
+        $form->shouldReceive('getName')->andReturn($formName);
+        $form->shouldReceive('submit')->with(array(), false);
+        $form->shouldReceive('isValid')->andReturn(true);
+        $form->shouldReceive('getData')->once()->andReturn($entity);
+
+        $formFactory = \Mockery::mock('Symfony\Component\Form\FormFactoryInterface');
+        $formFactory->shouldReceive('create')->andReturn($form);
+        $entityManager->setFormFactory($formFactory);
+
+        $objectManager = \Mockery::mock('Doctrine\Common\Persistence\ObjectManager');
+        $objectManager->shouldReceive('persist')->with($entity);
+        $objectManager->shouldReceive('flush')->with($entity);
+        $entityManager->setObjectManager($objectManager);
+
+        try {
+            $entityManager->processForm($entity, $formData, EntityManager::METHOD_PATCH);
+        } catch(InvalidFormException $e) {
+            $this->fail('Should not throw a InvalidFormException');
+        }
     }
 
     public function testSaveEntity()
