@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Zero\UserBundle\Tests\Form;
+namespace Zero\UserBundle\Tests\Form\Type;
 
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Zero\UserBundle\Entity\User;
-use Zero\UserBundle\Form\UserType;
+use Zero\UserBundle\Form\Type\UserType;
 
 class UserTypeTest extends TypeTestCase
 {

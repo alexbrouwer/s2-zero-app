@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Zero\UserBundle\Tests\Form\User;
+namespace Zero\UserBundle\Tests\Form\Type\User;
 
 
 use Symfony\Component\Form\Test\TypeTestCase;
 use Zero\UserBundle\Entity\User\Group;
-use Zero\UserBundle\Form\User\GroupType;
+use Zero\UserBundle\Form\Type\User\GroupType;
 
 class GroupTypeTest extends TypeTestCase
 {
