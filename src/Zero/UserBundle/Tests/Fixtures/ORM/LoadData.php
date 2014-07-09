@@ -3,7 +3,6 @@
 
 namespace Zero\UserBundle\Tests\Fixtures\ORM;
 
-
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Zero\UserBundle\Entity\User;
@@ -35,7 +34,8 @@ class LoadData implements FixtureInterface
         $manager->flush();
     }
 
-    private function createGroup($name, array $roles) {
+    private function createGroup($name, array $roles)
+    {
         $group = new User\Group();
         $group->setName($name);
         $group->setRoles($roles);

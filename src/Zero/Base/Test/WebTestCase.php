@@ -242,7 +242,8 @@ class WebTestCase extends BaseWebTestCase
 
                 $name = isset($params['path']) ? $params['path'] : (isset($params['dbname']) ? $params['dbname'] : false);
                 if (!$name) {
-                    throw new \InvalidArgumentException("Connection does not contain a 'path' or 'dbname' parameter and cannot be dropped.");
+                    $msg = "Connection does not contain a 'path' or 'dbname' parameter and cannot be dropped.";
+                    throw new \InvalidArgumentException($msg);
                 }
 
                 if (!isset(self::$cachedMetadatas[$omName])) {
