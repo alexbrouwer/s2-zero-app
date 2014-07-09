@@ -8,7 +8,6 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\DBAL\Driver\PDOSqlite\Driver as SqliteDriver;
 use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader as DataFixturesLoader;
 use Symfony\Bundle\DoctrineFixturesBundle\Common\DataFixtures\Loader as SymfonyFixturesLoader;
@@ -222,9 +221,7 @@ class WebTestCase extends BaseWebTestCase
             $type = 'ORM';
         }
 
-        $executorClass       = 'PHPCR' === $type && class_exists('Doctrine\Bundle\PHPCRBundle\DataFixtures\PHPCRExecutor')
-            ? 'Doctrine\Bundle\PHPCRBundle\DataFixtures\PHPCRExecutor'
-            : 'Doctrine\\Common\\DataFixtures\\Executor\\' . $type . 'Executor';
+        $executorClass       = 'Doctrine\\Common\\DataFixtures\\Executor\\' . $type . 'Executor';
         $referenceRepository = new ProxyReferenceRepository($om);
         $cacheDriver         = $om->getMetadataFactory()->getCacheDriver();
 
@@ -232,71 +229,57 @@ class WebTestCase extends BaseWebTestCase
             $cacheDriver->deleteAll();
         }
 
-        if ('ORM' === $type) {
-            $connection = $om->getConnection();
-            if ($connection->getDriver() instanceof SqliteDriver) {
-                $params = $connection->getParams();
-                if (isset($params['master'])) {
-                    $params = $params['master'];
-                }
-
-                $name = isset($params['path']) ? $params['path'] : (isset($params['dbname']) ? $params['dbname'] : false);
-                if (!$name) {
-                    $msg = "Connection does not contain a 'path' or 'dbname' parameter and cannot be dropped.";
-                    throw new \InvalidArgumentException($msg);
-                }
-
-                if (!isset(self::$cachedMetadatas[$omName])) {
-                    self::$cachedMetadatas[$omName] = $om->getMetadataFactory()->getAllMetadata();
-                }
-                $metadatas = self::$cachedMetadatas[$omName];
-
-                $backup = $container->getParameter('kernel.cache_dir') . '/test_' . md5(serialize($metadatas) . serialize($classNames)) . '.db';
-                if (file_exists($backup) && file_exists($backup . '.ser') && $this->isBackupUpToDate($classNames, $backup)) {
-                    $om->flush();
-                    $om->clear();
-
-                    $executor = new $executorClass($om);
-                    $executor->setReferenceRepository($referenceRepository);
-                    $executor->getReferenceRepository()->load($backup);
-
-                    copy($backup, $name);
-
-                    $this->postFixtureRestore();
-
-                    return $executor;
-                }
-
-                // TODO: handle case when using persistent connections. Fail loudly?
-                $schemaTool = new SchemaTool($om);
-                $schemaTool->dropDatabase($name);
-                if (!empty($metadatas)) {
-                    $schemaTool->createSchema($metadatas);
-                }
-                $this->postFixtureSetup();
-
-                $executor = new $executorClass($om);
-                $executor->setReferenceRepository($referenceRepository);
-            }
+        $connection = $om->getConnection();
+        $params     = $connection->getParams();
+        if (isset($params['master'])) {
+            $params = $params['master'];
         }
+
+        $name = isset($params['path']) ? $params['path'] : (isset($params['dbname']) ? $params['dbname'] : false);
+        if (!$name) {
+            $msg = "Connection does not contain a 'path' or 'dbname' parameter and cannot be dropped.";
+            throw new \InvalidArgumentException($msg);
+        }
+
+        if (!isset(self::$cachedMetadatas[$omName])) {
+            self::$cachedMetadatas[$omName] = $om->getMetadataFactory()->getAllMetadata();
+        }
+        $metadatas = self::$cachedMetadatas[$omName];
+
+        $backup = $container->getParameter('kernel.cache_dir') . '/test_' . md5(serialize($metadatas) . serialize($classNames)) . '.db';
+        if (file_exists($backup) && file_exists($backup . '.ser') && $this->isBackupUpToDate($classNames, $backup)) {
+            $om->flush();
+            $om->clear();
+
+            $executor = new $executorClass($om);
+            $executor->setReferenceRepository($referenceRepository);
+            $executor->getReferenceRepository()->load($backup);
+
+            copy($backup, $name);
+
+            $this->postFixtureRestore();
+
+            return $executor;
+        }
+
+        $schemaTool = new SchemaTool($om);
+        $schemaTool->dropDatabase($name);
+        if (!empty($metadatas)) {
+            $schemaTool->createSchema($metadatas);
+        }
+        $this->postFixtureSetup();
+
+        $executor = new $executorClass($om);
+        $executor->setReferenceRepository($referenceRepository);
 
         if (empty($executor)) {
             $purgerClass = 'Doctrine\\Common\\DataFixtures\\Purger\\' . $type . 'Purger';
-            if ('PHPCR' === $type) {
-                $purger      = new $purgerClass($om);
-                $initManager = $container->has('doctrine_phpcr.initializer_manager')
-                    ? $container->get('doctrine_phpcr.initializer_manager')
-                    : null;
-
-                $executor = new $executorClass($om, $purger, $initManager);
-            } else {
-                $purger = new $purgerClass();
-                if (null !== $purgeMode) {
-                    $purger->setPurgeMode($purgeMode);
-                }
-
-                $executor = new $executorClass($om, $purger);
+            $purger      = new $purgerClass();
+            if (null !== $purgeMode) {
+                $purger->setPurgeMode($purgeMode);
             }
+
+            $executor = new $executorClass($om, $purger);
 
             $executor->setReferenceRepository($referenceRepository);
             $executor->purge();
