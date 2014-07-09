@@ -16,7 +16,8 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $group->getName());
     }
 
-    public function testRoles() {
+    public function testRoles()
+    {
         $expected = array('ROLE_1');
         $group    = new Group();
 

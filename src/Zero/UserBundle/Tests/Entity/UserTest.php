@@ -34,8 +34,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $user->getEmail());
     }
 
-    public function testGroups() {
-
+    public function testGroups()
+    {
         $expected = \Mockery::mock('Zero\UserBundle\Entity\User\Group');
 
         $user = new User();
