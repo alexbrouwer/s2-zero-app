@@ -12,6 +12,6 @@ security:
             anonymous: ~
 
     access_control:
-        - { path: ^/api/docs/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/docs/api/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
