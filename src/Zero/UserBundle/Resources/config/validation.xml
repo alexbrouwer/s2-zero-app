@@ -7,7 +7,7 @@
         <property name="username">
             <constraint name="NotBlank"/>
             <constraint name="Length">
-                <option name="min">6</option>
+                <option name="min">4</option>
                 <option name="max">255</option>
             </constraint>
         </property>
@@ -20,7 +20,7 @@
         <property name="displayName">
             <constraint name="NotBlank"/>
             <constraint name="Length">
-                <option name="min">6</option>
+                <option name="min">4</option>
                 <option name="max">255</option>
             </constraint>
         </property>
