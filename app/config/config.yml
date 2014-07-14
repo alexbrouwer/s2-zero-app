@@ -123,12 +123,3 @@ fos_rest:
         serialize_null: true
 
 bazinga_rest_extra: ~
-
-nelmio_api_doc:
-    name: API Docs
-    sandbox:
-        body_format: json
-
-        request_format:
-            method: accept_header
-            default_format: json

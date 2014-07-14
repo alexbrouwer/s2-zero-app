@@ -19,11 +19,9 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Bazinga\Bundle\RestExtraBundle\BazingaRestExtraBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Alex\AsseticExtraBundle\AlexAsseticExtraBundle(),
             new Zero\ApiBaseBundle\ZeroApiBaseBundle(),
-            new Zero\ApiDocBundle\ZeroApiDocBundle(),
             new Zero\UserBundle\ZeroUserBundle(),
         );
 
