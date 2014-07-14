@@ -14,13 +14,11 @@ class Configuration implements ConfigurationInterface
 {
     /**
      * {@inheritDoc}
-     *
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('zero_api_doc');
+        $treeBuilder->root('zero_api_doc');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
