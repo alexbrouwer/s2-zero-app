@@ -1,7 +1,33 @@
 parameters:
-#    zero_api_doc.example.class: Zero\ApiDocBundle\Example
+    zero_api_doc.extractor.class: Zero\ApiDocBundle\Extractor\ApiDocExtractor
 
 services:
-#    zero_api_doc.example:
-#        class: %zero_api_doc.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    zero_api_doc.annotation.reader:
+        class: Doctrine\Common\Annotations\AnnotationReader
+        public: false
+
+    zero_api_doc.extractor.comment:
+        class: Zero\ApiDocBundle\Util\DocCommentExtractor
+        public: false
+
+    zero_api_doc.listener.api_doc_annotations:
+        class: Zero\ApiDocBundle\Listener\ApiDocAnnotationsListener
+        tags:
+        - { name: kernel.event_listener, event: zero_api_doc.extractor.handle, method: onExtractorHandle }
+
+    zero_api_doc.listener.doc_block:
+        class: Zero\ApiDocBundle\Listener\DocBlockListener
+        arguments: [@zero_api_doc.extractor.comment]
+        tags:
+        - { name: kernel.event_listener, event: zero_api_doc.extractor.handle, method: onExtractorHandle }
+        - { name: kernel.event_listener, event: zero_api_doc.extractor.post_handle, method: onExtractorPostHandle }
+
+    zero_api_doc.listener.route:
+        class: Zero\ApiDocBundle\Listener\RouteListener
+        arguments: [@zero_api_doc.extractor.comment]
+        tags:
+        - { name: kernel.event_listener, event: zero_api_doc.extractor.handle, method: onExtractorHandle }
+
+    zero_api_doc.extractor:
+        class: %zero_api_doc.extractor.class%
+        arguments: [@service_container, @router.default, @zero_api_doc.annotation.reader, @event_dispatcher]

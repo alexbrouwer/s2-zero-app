@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Zero\ApiBaseBundle\Controller\BaseController;
+use Zero\ApiDocBundle\Annotation as ApiDoc;
 use Zero\UserBundle\Entity\User;
 use Zero\UserBundle\Service\UserManager;
 
@@ -26,6 +27,13 @@ class UserController extends BaseController implements ClassResourceInterface
     /**
      * Get users
      *
+     * @ApiDoc\Api
+     * @ApiDoc\Resource
+     * @ApiDoc\StatusCode(200)
+     * @ApiDoc\Filters(
+     *      @ApiDoc\Filter("foo")
+     * )
+     *
      * @param Request $request The request object
      *
      * @return array
@@ -37,6 +45,8 @@ class UserController extends BaseController implements ClassResourceInterface
 
     /**
      * Get user
+     *
+     * @ApiDoc\Api
      *
      * @param int $userId The userId of the user
      *
