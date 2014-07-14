@@ -1,0 +1,7 @@
+parameters:
+#    zero_api_doc.example.class: Zero\ApiDocBundle\Example
+
+services:
+#    zero_api_doc.example:
+#        class: %zero_api_doc.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

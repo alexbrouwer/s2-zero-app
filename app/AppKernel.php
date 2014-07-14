@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Alex\AsseticExtraBundle\AlexAsseticExtraBundle(),
             new Zero\ApiBaseBundle\ZeroApiBaseBundle(),
             new Zero\UserBundle\ZeroUserBundle(),
+            new Zero\ApiDocBundle\ZeroApiDocBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

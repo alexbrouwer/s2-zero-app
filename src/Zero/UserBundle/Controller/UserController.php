@@ -6,11 +6,9 @@ namespace Zero\UserBundle\Controller;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Zero\ApiBaseBundle\Controller\BaseController;
 use Zero\UserBundle\Entity\User;
 use Zero\UserBundle\Service\UserManager;
@@ -28,14 +26,6 @@ class UserController extends BaseController implements ClassResourceInterface
     /**
      * Get users
      *
-     * @ApiDoc(
-     * section="Users",
-     * resource = true,
-     * statusCodes = {
-     * 200 = "Returned when successful"
-     * }
-     * )
-     *
      * @param Request $request The request object
      *
      * @return array
@@ -47,15 +37,6 @@ class UserController extends BaseController implements ClassResourceInterface
 
     /**
      * Get user
-     *
-     * @ApiDoc(
-     * section="Users",
-     * resource = true,
-     * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the user is not found"
-     * }
-     * )
      *
      * @param int $userId The userId of the user
      *
@@ -69,16 +50,6 @@ class UserController extends BaseController implements ClassResourceInterface
     /**
      * Create user
      *
-     * @ApiDoc(
-     * section="Users",
-     * resource = true,
-     * input = "Zero\UserBundle\Form\UserType",
-     * statusCodes = {
-     * 201 = "Returned when created",
-     * 400 = "Returned when validation errors occurred"
-     * }
-     * )
-     *
      * @param Request $request The request object
      *
      * @return FormTypeInterface|View
@@ -88,8 +59,8 @@ class UserController extends BaseController implements ClassResourceInterface
         $newUser = $this->getManager()->create($request->request->all());
 
         $routeOptions = array(
-            'userId' => $newUser->getId(),
-            '_format'  => $request->get('_format')
+            'userId'  => $newUser->getId(),
+            '_format' => $request->get('_format')
         );
 
         return $this->routeRedirectView('api_get_user', $routeOptions, Codes::HTTP_CREATED);
@@ -97,17 +68,6 @@ class UserController extends BaseController implements ClassResourceInterface
 
     /**
      * Update user
-     *
-     * @ApiDoc(
-     * section="Users",
-     * resource = true,
-     * input = "Zero\UserBundle\Form\UserType",
-     * statusCodes = {
-     * 204 = "Returned when successful",
-     * 400 = "Returned when validation errors occurred",
-     * 404 = "Returned when the user is not found"
-     * }
-     * )
      *
      * @param int $userId The userId of the user
      * @param Request $request The request object
@@ -122,8 +82,8 @@ class UserController extends BaseController implements ClassResourceInterface
         );
 
         $routeOptions = array(
-            'userId' => $user->getId(),
-            '_format'  => $request->get('_format')
+            'userId'  => $user->getId(),
+            '_format' => $request->get('_format')
         );
 
         return $this->routeRedirectView('api_get_user', $routeOptions, Codes::HTTP_NO_CONTENT);
@@ -131,17 +91,6 @@ class UserController extends BaseController implements ClassResourceInterface
 
     /**
      * Patch user
-     *
-     * @ApiDoc(
-     * section="Users",
-     * resource = true,
-     * input = "Zero\UserBundle\Form\UserType",
-     * statusCodes = {
-     * 204 = "Returned when successful",
-     * 400 = "Returned when validation errors occurred",
-     * 404 = "Returned when the user is not found"
-     * }
-     * )
      *
      * @param int $userId The userId of the user
      * @param Request $request The request object
@@ -156,8 +105,8 @@ class UserController extends BaseController implements ClassResourceInterface
         );
 
         $routeOptions = array(
-            'userId' => $user->getId(),
-            '_format'  => $request->get('_format')
+            'userId'  => $user->getId(),
+            '_format' => $request->get('_format')
         );
 
         return $this->routeRedirectView('api_get_user', $routeOptions, Codes::HTTP_NO_CONTENT);
@@ -165,15 +114,6 @@ class UserController extends BaseController implements ClassResourceInterface
 
     /**
      * Delete user
-     *
-     * @ApiDoc(
-     * section="Users",
-     * resource = true,
-     * statusCodes = {
-     * 204 = "Returned when deleted",
-     * 404 = "Returned when the user is not found"
-     * }
-     * )
      *
      * @param int $userId The userId of the user
      *
@@ -191,15 +131,6 @@ class UserController extends BaseController implements ClassResourceInterface
     /**
      * Get groups for user
      *
-     * @ApiDoc(
-     * section="Users",
-     * resource = true,
-     * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the user is not found"
-     * }
-     * )
-     *
      * @param int $userId
      *
      * @return array
@@ -214,15 +145,6 @@ class UserController extends BaseController implements ClassResourceInterface
     /**
      * Link user to group
      *
-     * @ApiDoc(
-     * section="Users",
-     * resource = true,
-     * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the user is not found"
-     * }
-     * )
-     *
      * @param Request $request
      * @param int $userId The identity of the user
      * @param int $groupId The identity of the group
@@ -234,7 +156,7 @@ class UserController extends BaseController implements ClassResourceInterface
         $user = $this->getOr404($userId);
 
         $groupManager = $this->container->get('zero_user.user.group.manager');
-        $group = $groupManager->get($groupId);
+        $group        = $groupManager->get($groupId);
         if (!$group instanceof User\Group) {
             throw new NotFoundHttpException(sprintf("Group '%s' not found", $groupId));
         }
@@ -243,8 +165,8 @@ class UserController extends BaseController implements ClassResourceInterface
         $this->getManager()->saveEntity($user);
 
         $routeOptions = array(
-            'userId' => $user->getId(),
-            '_format'  => $request->get('_format')
+            'userId'  => $user->getId(),
+            '_format' => $request->get('_format')
         );
 
         return $this->routeRedirectView('api_get_user', $routeOptions, Codes::HTTP_NO_CONTENT);
@@ -252,15 +174,6 @@ class UserController extends BaseController implements ClassResourceInterface
 
     /**
      * Unlink user to group
-     *
-     * @ApiDoc(
-     * section="Users",
-     * resource = true,
-     * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the user is not found"
-     * }
-     * )
      *
      * @param Request $request
      * @param int $userId The identity of the user
@@ -273,7 +186,7 @@ class UserController extends BaseController implements ClassResourceInterface
         $user = $this->getOr404($userId);
 
         $groupManager = $this->container->get('zero_user.user.group.manager');
-        $group = $groupManager->get($groupId);
+        $group        = $groupManager->get($groupId);
         if (!$group instanceof User\Group) {
             throw new NotFoundHttpException(sprintf("Group '%s' not found", $groupId));
         }
@@ -282,13 +195,12 @@ class UserController extends BaseController implements ClassResourceInterface
         $this->getManager()->saveEntity($user);
 
         $routeOptions = array(
-            'userId' => $user->getId(),
-            '_format'  => $request->get('_format')
+            'userId'  => $user->getId(),
+            '_format' => $request->get('_format')
         );
 
         return $this->routeRedirectView('api_get_user', $routeOptions, Codes::HTTP_NO_CONTENT);
     }
-
 
     /**
      * Get user

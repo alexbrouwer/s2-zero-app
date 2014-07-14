@@ -1,0 +1,3 @@
+zero_api_doc_homepage:
+    path:     /
+    defaults: { _controller: ZeroApiDocBundle:Default:index }

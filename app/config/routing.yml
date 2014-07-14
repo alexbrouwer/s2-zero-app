@@ -1,3 +1,7 @@
+zero_api_doc:
+    resource: "@ZeroApiDocBundle/Resources/config/routing.yml"
+    prefix:   /
+
 #### API ####
 
 api_zero_user:
