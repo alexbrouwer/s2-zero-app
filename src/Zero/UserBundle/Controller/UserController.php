@@ -39,8 +39,6 @@ class UserController extends BaseController implements ClassResourceInterface
      * @param Request $request The request object
      *
      * @return array
-     *
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function cgetAction(Request $request)
     {
