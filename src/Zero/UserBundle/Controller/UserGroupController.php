@@ -26,14 +26,6 @@ class UserGroupController extends BaseController
     /**
      * Get groups
      *
-     * @ApiDoc(
-     * section="User Groups",
-     * resource = true,
-     * statusCodes = {
-     * 200 = "Returned when successful"
-     * }
-     * )
-     *
      * @param Request $request The request object
      *
      * @return array
@@ -46,15 +38,6 @@ class UserGroupController extends BaseController
     /**
      * Get group
      *
-     * @ApiDoc(
-     * section="User Groups",
-     * resource = true,
-     * statusCodes = {
-     * 200 = "Returned when successful",
-     * 404 = "Returned when the group is not found"
-     * }
-     * )
-     *
      * @param string $groupId The identity of the group
      *
      * @return array
@@ -66,16 +49,6 @@ class UserGroupController extends BaseController
 
     /**
      * Create group
-     *
-     * @ApiDoc(
-     * section="User Groups",
-     * resource = true,
-     * input = "Zero\UserBundle\Form\User\GroupType",
-     * statusCodes = {
-     * 201 = "Returned when created",
-     * 400 = "Returned when validation errors occurred"
-     * }
-     * )
      *
      * @param Request $request The request object
      *
@@ -95,17 +68,6 @@ class UserGroupController extends BaseController
 
     /**
      * Update group
-     *
-     * @ApiDoc(
-     * section="User Groups",
-     * resource = true,
-     * input = "Gearbox\SecurityBundle\Form\User\GroupType",
-     * statusCodes = {
-     * 204 = "Returned when successful",
-     * 400 = "Returned when validation errors occurred",
-     * 404 = "Returned when the group is not found"
-     * }
-     * )
      *
      * @param string $groupId The identity of the group
      * @param Request $request The request object
@@ -130,17 +92,6 @@ class UserGroupController extends BaseController
     /**
      * Patch group
      *
-     * @ApiDoc(
-     * section="User Groups",
-     * resource = true,
-     * input = "Gearbox\SecurityBundle\Form\User\GroupType",
-     * statusCodes = {
-     * 204 = "Returned when successful",
-     * 400 = "Returned when validation errors occurred",
-     * 404 = "Returned when the group is not found"
-     * }
-     * )
-     *
      * @param string $groupId The identity of the group
      * @param Request $request The request object
      *
@@ -163,15 +114,6 @@ class UserGroupController extends BaseController
 
     /**
      * Delete group
-     *
-     * @ApiDoc(
-     * section="User Groups",
-     * resource = true,
-     * statusCodes = {
-     * 204 = "Returned when deleted",
-     * 404 = "Returned when the group is not found"
-     * }
-     * )
      *
      * @param int $groupId The identity of the group
      *
