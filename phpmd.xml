@@ -25,5 +25,14 @@
         </properties>
     </rule>
 
-    <rule ref="rulesets/unusedcode.xml"/>
+    <rule ref="rulesets/unusedcode.xml">
+        <exclude name="UnusedFormalParameter"/>
+        <exclude name="UnusedLocalVariable"/>
+    </rule>
+    <rule ref="rulesets/unusedcode.xml/UnusedFormalParameter">
+        <priority>5</priority>
+    </rule>
+    <rule ref="rulesets/unusedcode.xml/UnusedLocalVariable">
+        <priority>5</priority>
+    </rule>
 </ruleset>
