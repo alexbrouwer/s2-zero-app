@@ -31,7 +31,7 @@ class Filter implements AnnotationInterface
     /**
      * @return array
      */
-    public function toArray()
+    public function getOptions()
     {
         return array(
             'dataType' => $this->dataType,
