@@ -120,7 +120,7 @@ class ApiDocExtractor
         $event = new ExtractorEvent($container, $method, $route, $annotations);
 
         $this->dispatcher->dispatch(ExtractorEvents::HANDLE, $event);
-        $this->dispatcher->dispatch(ExtractorEvents::POST_HANDLE, $event);
+        $this->dispatcher->dispatch(ExtractorEvents::PARSE, $event);
 
         return $event->getContainer();
     }

@@ -41,7 +41,7 @@ class DocBlockListener
      *
      * @param ExtractorEvent $event
      */
-    public function onExtractorPostHandle(ExtractorEvent $event)
+    public function onExtractorParse(ExtractorEvent $event)
     {
         $container = $event->getContainer();
 

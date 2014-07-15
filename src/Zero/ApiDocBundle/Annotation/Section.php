@@ -9,7 +9,7 @@ use Doctrine\Common\Annotations\Annotation\Required;
  * @Annotation
  * @Target({"METHOD"})
  */
-class Description implements AnnotationInterface
+class Section implements AnnotationInterface
 {
 
     /**

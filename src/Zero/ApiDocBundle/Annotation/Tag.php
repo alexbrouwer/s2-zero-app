@@ -9,12 +9,12 @@ use Doctrine\Common\Annotations\Annotation\Required;
  * @Annotation
  * @Target({"METHOD"})
  */
-class Description implements AnnotationInterface
+class Tag implements AnnotationInterface
 {
 
     /**
      * @var string
-     * @Required()
+     * @Required
      */
     public $value;
 

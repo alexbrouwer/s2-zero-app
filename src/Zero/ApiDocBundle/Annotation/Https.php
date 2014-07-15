@@ -9,7 +9,7 @@ use Doctrine\Common\Annotations\Annotation;
  * @Annotation
  * @Target({"METHOD"})
  */
-class Resource implements AnnotationInterface
+class Https implements AnnotationInterface
 {
 
     /**

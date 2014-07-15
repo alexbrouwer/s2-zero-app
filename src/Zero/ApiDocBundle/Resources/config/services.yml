@@ -6,7 +6,7 @@ services:
         class: Doctrine\Common\Annotations\AnnotationReader
         public: false
 
-    zero_api_doc.extractor.comment:
+    zero_api_doc.util.comment:
         class: Zero\ApiDocBundle\Util\DocCommentExtractor
         public: false
 
@@ -17,14 +17,14 @@ services:
 
     zero_api_doc.listener.doc_block:
         class: Zero\ApiDocBundle\Listener\DocBlockListener
-        arguments: [@zero_api_doc.extractor.comment]
+        arguments: [@zero_api_doc.util.comment]
         tags:
         - { name: kernel.event_listener, event: zero_api_doc.extractor.handle, method: onExtractorHandle }
-        - { name: kernel.event_listener, event: zero_api_doc.extractor.post_handle, method: onExtractorPostHandle }
+        - { name: kernel.event_listener, event: zero_api_doc.extractor.parse, method: onExtractorParse }
 
     zero_api_doc.listener.route:
         class: Zero\ApiDocBundle\Listener\RouteListener
-        arguments: [@zero_api_doc.extractor.comment]
+        arguments: [@zero_api_doc.util.comment]
         tags:
         - { name: kernel.event_listener, event: zero_api_doc.extractor.handle, method: onExtractorHandle }
 

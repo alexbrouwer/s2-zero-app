@@ -9,7 +9,7 @@ use Doctrine\Common\Annotations\Annotation\Required;
  * @Annotation
  * @Target({"METHOD"})
  */
-class Filter implements AnnotationInterface
+class Requirement implements AnnotationInterface
 {
 
     /**
@@ -26,7 +26,12 @@ class Filter implements AnnotationInterface
     /**
      * @var string
      */
-    public $pattern;
+    public $requirement;
+
+    /**
+     * @var string
+     */
+    public $description;
 
     /**
      * @return array
@@ -35,7 +40,8 @@ class Filter implements AnnotationInterface
     {
         return array(
             'dataType' => $this->dataType,
-            'pattern' => $this->pattern,
+            'requirement' => $this->requirement,
+            'description' => $this->description
         );
     }
 } 

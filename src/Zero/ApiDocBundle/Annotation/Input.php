@@ -9,13 +9,18 @@ use Doctrine\Common\Annotations\Annotation\Required;
  * @Annotation
  * @Target({"METHOD"})
  */
-class Description implements AnnotationInterface
+class Input implements AnnotationInterface
 {
 
     /**
      * @var string
      * @Required()
      */
-    public $value;
+    public $class;
+
+    /**
+     * @var string[]
+     */
+    public $groups = array();
 
 }
