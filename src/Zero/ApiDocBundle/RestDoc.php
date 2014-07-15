@@ -67,12 +67,12 @@ class RestDoc
     private $parameters = array();
 
     /**
-     * @var string
+     * @var array
      */
     private $input;
 
     /**
-     * @var string
+     * @var array
      */
     private $output;
 
@@ -247,7 +247,7 @@ class RestDoc
      *
      * @return boolean
      */
-    public function getHttps()
+    public function isHttps()
     {
         return $this->https;
     }
@@ -269,7 +269,7 @@ class RestDoc
     /**
      * Get Input
      *
-     * @return string
+     * @return array
      */
     public function getInput()
     {
@@ -279,13 +279,14 @@ class RestDoc
     /**
      * Set input
      *
-     * @param string $input
+     * @param string $className
+     * @param array $groups
      *
      * @return RestDoc
      */
-    public function setInput($input)
+    public function setInput($className, array $groups = array())
     {
-        $this->input = $input;
+        $this->input = array('class' => $className, 'groups' => $groups);
 
         return $this;
     }
@@ -341,7 +342,7 @@ class RestDoc
     /**
      * Get Output
      *
-     * @return string
+     * @return array
      */
     public function getOutput()
     {
@@ -351,13 +352,14 @@ class RestDoc
     /**
      * Set output
      *
-     * @param string $output
+     * @param string $className
+     * @param array $groups
      *
      * @return RestDoc
      */
-    public function setOutput($output)
+    public function setOutput($className, array $groups = array())
     {
-        $this->output = $output;
+        $this->output = array('class' => $className, 'groups' => $groups);
 
         return $this;
     }
@@ -471,15 +473,15 @@ class RestDoc
     }
 
     /**
-     * Set tags
+     * Add tag
      *
-     * @param array $tags
+     * @param string $tag
      *
      * @return RestDoc
      */
-    public function setTags($tags)
+    public function addTag($tag)
     {
-        $this->tags = $tags;
+        $this->tags[] = $tag;
 
         return $this;
     }
