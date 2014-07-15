@@ -65,6 +65,20 @@ class ExtractorEvent extends Event
     }
 
     /**
+     * Set container
+     *
+     * @param RestDoc $container
+     *
+     * @return ExtractorEvent
+     */
+    public function setContainer(RestDoc $container)
+    {
+        $this->container = $container;
+
+        return $this;
+    }
+
+    /**
      * Get Method
      *
      * @return \ReflectionMethod
