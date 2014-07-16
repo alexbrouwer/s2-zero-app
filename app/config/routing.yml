@@ -1,7 +1,3 @@
-zero_o_auth:
-    resource: "@ZeroOAuthBundle/Resources/config/routing.yml"
-    prefix:   /
-
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /docs/api
