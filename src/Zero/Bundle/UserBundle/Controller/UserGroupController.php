@@ -79,7 +79,7 @@ class UserGroupController extends BaseController
      *
      * @param Request $request The request object
      *
-     * @return FormTypeInterface|View
+     * @return View
      */
     public function postAction(Request $request)
     {
@@ -110,7 +110,7 @@ class UserGroupController extends BaseController
      * @param string $groupId The identity of the group
      * @param Request $request The request object
      *
-     * @return FormTypeInterface|View
+     * @return View
      */
     public function putAction($groupId, Request $request)
     {
@@ -144,7 +144,7 @@ class UserGroupController extends BaseController
      * @param string $groupId The identity of the group
      * @param Request $request The request object
      *
-     * @return FormTypeInterface|View
+     * @return View
      */
     public function patchAction($groupId, Request $request)
     {
@@ -175,7 +175,7 @@ class UserGroupController extends BaseController
      *
      * @param int $groupId The identity of the group
      *
-     * @return FormTypeInterface|View
+     * @return View
      */
     public function deleteAction($groupId)
     {

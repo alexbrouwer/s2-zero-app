@@ -7,7 +7,6 @@ use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Zero\Bundle\ApiBundle\Controller\BaseController;
@@ -28,11 +27,11 @@ class UserController extends BaseController implements ClassResourceInterface
      * Get users
      *
      * @ApiDoc(
-     * section="Users",
-     * resource = true,
-     * statusCodes = {
-     * 200 = "Returned when successful"
-     * }
+     *      section="Users",
+     *      resource = true,
+     *      statusCodes = {
+     *          200 = "Returned when successful"
+     *      }
      * )
      *
      * @param Request $request The request object
@@ -80,7 +79,7 @@ class UserController extends BaseController implements ClassResourceInterface
      *
      * @param Request $request The request object
      *
-     * @return FormTypeInterface|View
+     * @return View
      */
     public function postAction(Request $request)
     {
@@ -111,7 +110,7 @@ class UserController extends BaseController implements ClassResourceInterface
      * @param int $userId The userId of the user
      * @param Request $request The request object
      *
-     * @return FormTypeInterface|View
+     * @return View
      */
     public function putAction($userId, Request $request)
     {
@@ -145,7 +144,7 @@ class UserController extends BaseController implements ClassResourceInterface
      * @param int $userId The userId of the user
      * @param Request $request The request object
      *
-     * @return FormTypeInterface|View
+     * @return View
      */
     public function patchAction($userId, Request $request)
     {
@@ -176,7 +175,7 @@ class UserController extends BaseController implements ClassResourceInterface
      *
      * @param int $userId The userId of the user
      *
-     * @return FormTypeInterface|View
+     * @return View
      */
     public function deleteAction($userId)
     {
@@ -226,7 +225,7 @@ class UserController extends BaseController implements ClassResourceInterface
      * @param int $userId The identity of the user
      * @param int $groupId The identity of the group
      *
-     * @return array
+     * @return View
      */
     public function linkGroupAction(Request $request, $userId, $groupId)
     {
@@ -265,7 +264,7 @@ class UserController extends BaseController implements ClassResourceInterface
      * @param int $userId The identity of the user
      * @param int $groupId The identity of the group
      *
-     * @return array
+     * @return View
      */
     public function unlinkGroupAction(Request $request, $userId, $groupId)
     {

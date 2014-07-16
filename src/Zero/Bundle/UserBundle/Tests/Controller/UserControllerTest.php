@@ -4,7 +4,7 @@
 namespace Zero\Bundle\UserBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Client;
-use Zero\Base\Test\WebTestCase;
+use Zero\Bundle\ApiBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {

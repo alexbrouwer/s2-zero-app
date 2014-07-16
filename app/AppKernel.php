@@ -23,9 +23,7 @@ class AppKernel extends Kernel
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Alex\AsseticExtraBundle\AlexAsseticExtraBundle(),
             new Zero\Bundle\ApiBundle\ZeroApiBundle(),
-            new Zero\Bundle\OAuthBundle\ZeroOAuthBundle(),
             new Zero\Bundle\UserBundle\ZeroUserBundle(),
-//            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

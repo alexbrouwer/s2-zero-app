@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Zero\Base\Test;
+namespace Zero\Bundle\ApiBundle\Test;
 
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;

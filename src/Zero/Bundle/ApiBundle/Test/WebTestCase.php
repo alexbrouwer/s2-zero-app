@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Zero\Base\Test;
+namespace Zero\Bundle\ApiBundle\Test;
 
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Component\DomCrawler\Crawler;
@@ -49,9 +49,10 @@ class WebTestCase extends FixturesTestCase
             $response->getStatusCode(),
             $response->getContent()
         );
+
         $this->assertTrue(
             $response->headers->contains('Content-Type', 'application/json'),
-            $response->headers
+            'Failed to assert that header "Content-Type: application/json" exists in:' . PHP_EOL. $response->headers
         );
     }
 
@@ -70,7 +71,7 @@ class WebTestCase extends FixturesTestCase
      */
     protected function assertHeaderNotExists(Response $response, $header)
     {
-        $this->assertFalse($response->headers->has($header), sprintf('Response contains header "%s"', $header));
+        $this->assertFalse($response->headers->has($header), sprintf('Response should not contain header "%s"', $header));
     }
 
     /**
@@ -82,7 +83,7 @@ class WebTestCase extends FixturesTestCase
     {
         $this->assertTrue(
             $response->headers->contains($headerKey, $headerValue),
-            sprintf('Response does not contain header "%s" with "%s"', $headerKey, $headerValue)
+            sprintf('Response does not contain header "%s: %s"', $headerKey, $headerValue)
         );
     }
 
