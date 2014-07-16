@@ -116,7 +116,7 @@ fos_rest:
         codes:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
             'Doctrine\ORM\OptimisticLockException': 409,
-            'Zero\ApiBaseBundle\Exception\InvalidFormException': 400
+            'Zero\Bundle\ApiBaseBundle\Exception\InvalidFormException': 400
         messages:
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
     serializer:

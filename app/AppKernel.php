@@ -22,9 +22,10 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Alex\AsseticExtraBundle\AlexAsseticExtraBundle(),
-            new Zero\ApiBaseBundle\ZeroApiBaseBundle(),
-            new Zero\ApiDocBundle\ZeroApiDocBundle(),
-            new Zero\UserBundle\ZeroUserBundle(),
+            new Zero\Bundle\ApiBaseBundle\ZeroApiBaseBundle(),
+            new Zero\Bundle\OAuthBundle\ZeroOAuthBundle(),
+            new Zero\Bundle\UserBundle\ZeroUserBundle(),
+//            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

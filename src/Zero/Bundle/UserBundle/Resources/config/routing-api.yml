@@ -1,0 +1,34 @@
+api_get_users_groups:
+    pattern:      /users/groups
+    defaults:     { _controller: ZeroUserBundle:UserGroup:cget }
+    requirements: { _method: GET }
+
+api_post_users_group:
+    pattern:      /users/groups
+    defaults:     { _controller: ZeroUserBundle:UserGroup:post }
+    requirements: { _method: POST }
+
+api_get_users_group:
+    pattern:      /users/groups/{groupId}
+    defaults:     { _controller: ZeroUserBundle:UserGroup:get }
+    requirements: { _method: GET }
+
+api_put_users_group:
+    pattern:      /users/groups/{groupId}
+    defaults:     { _controller: ZeroUserBundle:UserGroup:put }
+    requirements: { _method: PUT }
+
+api_patch_users_group:
+    pattern:      /users/groups/{groupId}
+    defaults:     { _controller: ZeroUserBundle:UserGroup:patch }
+    requirements: { _method: PATCH }
+
+api_delete_users_group:
+    pattern:      /users/groups/{groupId}
+    defaults:     { _controller: ZeroUserBundle:UserGroup:delete }
+    requirements: { _method: DELETE }
+
+api_all_users:
+    type: rest
+    resource: Zero\Bundle\UserBundle\Controller\UserController
+    name_prefix: api_
