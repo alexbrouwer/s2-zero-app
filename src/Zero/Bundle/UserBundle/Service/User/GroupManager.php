@@ -4,7 +4,7 @@
 namespace Zero\Bundle\UserBundle\Service\User;
 
 use Zero\Bundle\UserBundle\Entity\User\Group;
-use Zero\Bundle\ApiBaseBundle\Manager\EntityManager;
+use Zero\Bundle\ApiBundle\Manager\EntityManager;
 
 class GroupManager extends EntityManager
 {

@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Alex\AsseticExtraBundle\AlexAsseticExtraBundle(),
-            new Zero\Bundle\ApiBaseBundle\ZeroApiBaseBundle(),
+            new Zero\Bundle\ApiBundle\ZeroApiBundle(),
             new Zero\Bundle\OAuthBundle\ZeroOAuthBundle(),
             new Zero\Bundle\UserBundle\ZeroUserBundle(),
 //            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),

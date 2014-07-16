@@ -10,8 +10,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Exception\ResourceNotFoundException;
-use Zero\Bundle\ApiBaseBundle\Controller\BaseController;
+use Zero\Bundle\ApiBundle\Controller\BaseController;
 use Zero\Bundle\UserBundle\Entity\User;
 use Zero\Bundle\UserBundle\Service\UserManager;
 
@@ -88,8 +87,8 @@ class UserController extends BaseController implements ClassResourceInterface
         $newUser = $this->getManager()->create($request->request->all());
 
         $routeOptions = array(
-            'userId' => $newUser->getId(),
-            '_format'  => $request->get('_format')
+            'userId'  => $newUser->getId(),
+            '_format' => $request->get('_format')
         );
 
         return $this->routeRedirectView('api_get_user', $routeOptions, Codes::HTTP_CREATED);
@@ -122,8 +121,8 @@ class UserController extends BaseController implements ClassResourceInterface
         );
 
         $routeOptions = array(
-            'userId' => $user->getId(),
-            '_format'  => $request->get('_format')
+            'userId'  => $user->getId(),
+            '_format' => $request->get('_format')
         );
 
         return $this->routeRedirectView('api_get_user', $routeOptions, Codes::HTTP_NO_CONTENT);
@@ -156,8 +155,8 @@ class UserController extends BaseController implements ClassResourceInterface
         );
 
         $routeOptions = array(
-            'userId' => $user->getId(),
-            '_format'  => $request->get('_format')
+            'userId'  => $user->getId(),
+            '_format' => $request->get('_format')
         );
 
         return $this->routeRedirectView('api_get_user', $routeOptions, Codes::HTTP_NO_CONTENT);
@@ -234,7 +233,7 @@ class UserController extends BaseController implements ClassResourceInterface
         $user = $this->getOr404($userId);
 
         $groupManager = $this->container->get('zero_user.user.group.manager');
-        $group = $groupManager->get($groupId);
+        $group        = $groupManager->get($groupId);
         if (!$group instanceof User\Group) {
             throw new NotFoundHttpException(sprintf("Group '%s' not found", $groupId));
         }
@@ -243,8 +242,8 @@ class UserController extends BaseController implements ClassResourceInterface
         $this->getManager()->saveEntity($user);
 
         $routeOptions = array(
-            'userId' => $user->getId(),
-            '_format'  => $request->get('_format')
+            'userId'  => $user->getId(),
+            '_format' => $request->get('_format')
         );
 
         return $this->routeRedirectView('api_get_user', $routeOptions, Codes::HTTP_NO_CONTENT);
@@ -273,7 +272,7 @@ class UserController extends BaseController implements ClassResourceInterface
         $user = $this->getOr404($userId);
 
         $groupManager = $this->container->get('zero_user.user.group.manager');
-        $group = $groupManager->get($groupId);
+        $group        = $groupManager->get($groupId);
         if (!$group instanceof User\Group) {
             throw new NotFoundHttpException(sprintf("Group '%s' not found", $groupId));
         }
@@ -282,13 +281,12 @@ class UserController extends BaseController implements ClassResourceInterface
         $this->getManager()->saveEntity($user);
 
         $routeOptions = array(
-            'userId' => $user->getId(),
-            '_format'  => $request->get('_format')
+            'userId'  => $user->getId(),
+            '_format' => $request->get('_format')
         );
 
         return $this->routeRedirectView('api_get_user', $routeOptions, Codes::HTTP_NO_CONTENT);
     }
-
 
     /**
      * Get user

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ asset('bundles/zeroapi/favicon.ico') }}">
+
+    <title>{{ data.apiName }}</title>
+
+    <link href="{{ asset('bundles/zeroapi/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/zeroapi/css/prettify.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/zeroapi/css/apidoc.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">{{ data.apiName }}</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#modal-settings" data-toggle="modal">Settings</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 col-md-3 sidebar">
+
+        </div>
+        <div class="col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-3 main">
+            <div class="tabs"></div>
+            <div class="tabs-container row"></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-settings"></div>
+
+<script src="{{ asset('bundles/zeroapi/js/lib/underscore.min.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/lib/prettify.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/lib/jquery.min.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/lib/jquery.cookie-1.4.1.min.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/lib/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/lib/backbone.min.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/lib/backbone.associations.min.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/lib/backbone.computedfields.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/lib/backbone.modelbinder.min.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/lib/backbone.marionette.min.js') }}"></script>
+{% for section, resources in data.sections %}
+    {% for resource, methods in resources %}
+        {% for method in methods %}
+            <script id="template-{{ method.id }}" type="text/html">
+                {% include "ZeroApiBundle:ApiDoc:_method.html.twig" %}
+            </script>
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+<script id="template-method-sandbox" type="text/html">
+    {% include "ZeroApiBundle:ApiDoc:_sandbox.html.twig" %}
+</script>
+<script id="template-tree" type="text/html">
+    <nav class="navbar navbar-default navbar-block" role="navigation">
+        <form class="navbar-form" role="search">
+            <div class="form-group col-sm-12">
+                <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-search"></i>
+                </span>
+                    <input name="search" type="text" class="form-control" placeholder="Search URI">
+                </div>
+            </div>
+        </form>
+    </nav>
+    <ul class="root children"></ul>
+</script>
+<script id="template-tree-node" type="text/html">
+    <a href="javascript:void(0);" data-toggle="collapse" data-target="#<%= id %>">
+        <span class="badge"><%= children.length %></span> <%= name %>
+    </a>
+    <ul class="children collapse" id="<%= id %>"></ul>
+</script>
+<script id="template-method-node" type="text/html">
+    <a href="javascript:void(0);" title="<% if(typeof(description) != 'undefined') { %><%= description %><% } else { %><%= uri %><% } %>">
+        <div class="label label-<%= labelClass %>"><%= method %></div>
+        <%= uri %>
+    </a>
+</script>
+<script id="template-tab-drop" type="text/html">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="glyphicon glyphicon-align-justify"></i>
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+    </ul>
+</script>
+<script id="template-tab-drop-item" type="text/html">
+    <a role="menuitem" href="#<%= id %>">
+        <div class="label label-<%= labelClass %>"><%= method %></div>
+        <%= uri %>
+    </a>
+</script>
+<script id="template-tab" type="text/html">
+    <a role="tab" href="#<%= id %>">
+        <div class="label label-<%= labelClass %>"><%= method %></div>
+        <%= uri %>
+        <button type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    </a>
+</script>
+<script id="template-kv" type="text/html">
+    <input type="text" class="key form-control<% if(!edit) { %> keep-disabled<% } %>" placeholder="Key" <% if(!edit) { %>disabled="disabled"<% } %>/>
+    <span>=</span>
+    <input type="text" class="value form-control"
+           placeholder="<% if(typeof(description) != 'undefined') { %><%= description %><% } else { %>Value<% } %>"/>
+    <button type="button" class="btn btn-danger remove <% if(!remove) { %>hidden<% } %>"><i class="glyphicon glyphicon-minus"></i></button>
+</script>
+<script id="template-kvstore" type="text/html">
+    <div class="list"></div>
+    <button type="button" class="btn btn-success add">Add</button>
+</script>
+<script id="template-settings" type="text/html">
+    {% include "ZeroApiBundle:ApiDoc:_settings.html.twig" %}
+</script>
+<script src="{{ asset('bundles/zeroapi/js/apidoc.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/entities.js') }}"></script>
+<script src="{{ asset('bundles/zeroapi/js/views.js') }}"></script>
+<script>
+    {% if data.endpoint == '' and app.request is not null and app.request.host -%}
+    {% set data = data|merge({'endpoint': app.request.getBaseUrl()}) %}
+    {% endif -%}
+
+    ApiDoc.start({{ data|json_encode|raw }});
+</script>
+</body>
+</html>

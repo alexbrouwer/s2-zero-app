@@ -4,7 +4,7 @@
 namespace Zero\Bundle\UserBundle\Service;
 
 use Zero\Bundle\UserBundle\Entity\User;
-use Zero\Bundle\ApiBaseBundle\Manager\EntityManager;
+use Zero\Bundle\ApiBundle\Manager\EntityManager;
 
 class UserManager extends EntityManager
 {

@@ -1,0 +1,36 @@
+parameters:
+    zero_api.manager.abstract.class: Zero\Bundle\ApiBundle\Manager\EntityManager
+    zero_api.listener.invalid_form_exception.class: Zero\Bundle\ApiBundle\Listener\InvalidFormExceptionListener
+
+services:
+
+    zero_api.formatter.html_formatter:
+        class: Zero\Bundle\ApiBundle\Formatter\HtmlFormatter
+        parent: nelmio_api_doc.formatter.html_formatter
+
+    jms_serializer.identical_property_naming_strategy:
+        class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
+
+    jms_serializer.serialized_name_annotation_strategy:
+        class: JMS\Serializer\Naming\SerializedNameAnnotationStrategy
+        arguments: [@jms_serializer.identical_property_naming_strategy]
+
+    jms_serializer.cache_naming_strategy:
+        class: JMS\Serializer\Naming\CacheNamingStrategy
+        arguments: [@jms_serializer.serialized_name_annotation_strategy]
+
+    jms_serializer.naming_strategy:
+        alias: jms_serializer.cache_naming_strategy
+
+    zero_api.manager.abstract:
+        class: %zero_api.manager.abstract.class%
+        abstract: true
+        calls:
+            - [setObjectManager, [@doctrine.orm.default_entity_manager]]
+            - [setFormFactory, [@form.factory]]
+
+    zero_api.listener.invalid_form_exception:
+        class: %zero_api.listener.invalid_form_exception.class%
+        arguments: [@service_container]
+        tags:
+          - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }

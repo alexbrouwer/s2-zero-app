@@ -10,10 +10,10 @@ parameters:
 services:
     zero_user.user.manager:
         class: %zero_user.user.manager.class%
-        parent: zero_api_base.manager.abstract
+        parent: zero_api.manager.abstract
         arguments: [%zero_user.user.entity.class%, %zero_user.user.form.class%]
 
     zero_user.user.group.manager:
         class: %zero_user.user.group.manager.class%
-        parent: zero_api_base.manager.abstract
+        parent: zero_api.manager.abstract
         arguments: [%zero_user.user.group.entity.class%, %zero_user.user.group.form.class%]

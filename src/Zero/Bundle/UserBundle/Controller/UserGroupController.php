@@ -10,7 +10,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Zero\Bundle\ApiBaseBundle\Controller\BaseController;
+use Zero\Bundle\ApiBundle\Controller\BaseController;
 use Zero\Bundle\UserBundle\Entity\User\Group;
 
 class UserGroupController extends BaseController
