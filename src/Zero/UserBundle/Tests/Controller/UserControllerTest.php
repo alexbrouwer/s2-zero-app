@@ -47,9 +47,8 @@ class UserControllerTest extends WebTestCase
 
         $content = json_decode($response->getContent(), true);
 
-        $this->assertArrayHasKey('user', $content);
-        $this->assertArrayHasKey('id', $content['user']);
-        $this->assertEquals(1, $content['user']['id']);
+        $this->assertArrayHasKey('id', $content);
+        $this->assertEquals(1, $content['id']);
     }
 
     public function testPost()

@@ -10,23 +10,33 @@ services:
         class: Zero\ApiDocBundle\Util\DocCommentExtractor
         public: false
 
-    zero_api_doc.listener.api_doc_annotations:
-        class: Zero\ApiDocBundle\Listener\ApiDocAnnotationsListener
+    zero_api_doc.listener.handle.api_doc_annotations:
+        class: Zero\ApiDocBundle\Listener\Handle\ApiDocAnnotationsListener
         tags:
         - { name: kernel.event_listener, event: zero_api_doc.extractor.handle, method: onExtractorHandle }
 
-    zero_api_doc.listener.doc_block:
-        class: Zero\ApiDocBundle\Listener\DocBlockListener
+    zero_api_doc.listener.handle.doc_block:
+        class: Zero\ApiDocBundle\Listener\Handle\DocBlockListener
         arguments: [@zero_api_doc.util.comment]
         tags:
         - { name: kernel.event_listener, event: zero_api_doc.extractor.handle, method: onExtractorHandle }
+
+    zero_api_doc.listener.handle.route:
+        class: Zero\ApiDocBundle\Listener\Handle\RouteListener
+        arguments: [@zero_api_doc.util.comment]
+        tags:
+        - { name: kernel.event_listener, event: zero_api_doc.extractor.handle, method: onExtractorHandle }
+
+    zero_api_doc.listener.parse.description:
+        class: Zero\ApiDocBundle\Listener\Parse\DescriptionListener
+        tags:
         - { name: kernel.event_listener, event: zero_api_doc.extractor.parse, method: onExtractorParse }
 
-    zero_api_doc.listener.route:
-        class: Zero\ApiDocBundle\Listener\RouteListener
-        arguments: [@zero_api_doc.util.comment]
+    zero_api_doc.listener.parse.jms:
+        class: Zero\ApiDocBundle\Listener\Parse\JMSMetadataListener
+        arguments: [@jms_serializer, @jms_serializer.metadata_factory, @jms_serializer.naming_strategy, @zero_api_doc.util.comment]
         tags:
-        - { name: kernel.event_listener, event: zero_api_doc.extractor.handle, method: onExtractorHandle }
+        - { name: kernel.event_listener, event: zero_api_doc.extractor.parse, method: onExtractorParse }
 
     zero_api_doc.extractor:
         class: %zero_api_doc.extractor.class%

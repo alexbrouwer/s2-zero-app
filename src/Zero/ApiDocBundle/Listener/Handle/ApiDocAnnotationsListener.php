@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Zero\ApiDocBundle\Listener;
+namespace Zero\ApiDocBundle\Listener\Handle;
 
 use Symfony\Component\HttpFoundation\Response;
 use Zero\ApiDocBundle\Annotation;
@@ -47,48 +47,107 @@ class ApiDocAnnotationsListener
         return $annotation instanceof Annotation\AnnotationInterface;
     }
 
+    /**
+     * Handle api annotation
+     *
+     * @param RestDoc $container
+     * @param Annotation\Api $annotation
+     */
+    protected function handleApiAnnotation(RestDoc $container, Annotation\Api $annotation)
+    {
+        // Do nothing
+    }
+
+    /**
+     * Handle deprecated annotation
+     *
+     * @param RestDoc $container
+     * @param Annotation\Deprecated $annotation
+     */
     protected function handleDeprecatedAnnotation(RestDoc $container, Annotation\Deprecated $annotation)
     {
         $container->setDeprecated($annotation->value);
     }
 
+    /**
+     * Handle description annotation
+     *
+     * @param RestDoc $container
+     * @param Annotation\Description $annotation
+     */
     protected function handleDescriptionAnnotation(RestDoc $container, Annotation\Description $annotation)
     {
         $container->setDescription($annotation->value);
     }
 
+    /**
+     * Handle filter annotation
+     *
+     * @param RestDoc $container
+     * @param Annotation\Filter $annotation
+     */
     protected function handleFilterAnnotation(RestDoc $container, Annotation\Filter $annotation)
     {
         $container->addFilter($annotation->name, $annotation->getOptions());
     }
 
+    /**
+     * Handle https annotation
+     *
+     * @param RestDoc $container
+     * @param Annotation\Https $annotation
+     */
     protected function handleHttpsAnnotation(RestDoc $container, Annotation\Https $annotation)
     {
         $container->setHttps($annotation->value);
     }
 
+    /**
+     * Handle input annotation
+     *
+     * @param RestDoc $container
+     * @param Annotation\Input $annotation
+     */
     protected function handleInputAnnotation(RestDoc $container, Annotation\Input $annotation)
     {
         $container->setInput($annotation->class, $annotation->groups);
     }
 
+    /**
+     * Handle output annotation
+     *
+     * @param RestDoc $container
+     * @param Annotation\Output $annotation
+     */
     protected function handleOutputAnnotation(RestDoc $container, Annotation\Output $annotation)
     {
         $container->setOutput($annotation->class, $annotation->groups);
     }
 
+    /**
+     * Handle parameter annotation
+     *
+     * @param RestDoc $container
+     * @param Annotation\Parameter $annotation
+     */
     protected function handleParameterAnnotation(RestDoc $container, Annotation\Parameter $annotation)
     {
         $container->addParameter($annotation->name, $annotation->getOptions());
     }
 
+    /**
+     * Handle requirement annotation
+     *
+     * @param RestDoc $container
+     * @param Annotation\Requirement $annotation
+     */
     protected function handleRequirementAnnotation(RestDoc $container, Annotation\Requirement $annotation)
     {
         $container->addRequirement($annotation->name, $annotation->getOptions());
     }
 
     /**
-     * Handle resource
+     * Handle resource annotation
      *
      * @param RestDoc $container
      * @param Annotation\Resource $annotation
@@ -99,7 +158,7 @@ class ApiDocAnnotationsListener
     }
 
     /**
-     * Handle section
+     * Handle section annotation
      *
      * @param RestDoc $container
      * @param Annotation\Section $annotation
@@ -110,7 +169,7 @@ class ApiDocAnnotationsListener
     }
 
     /**
-     * Handle status code
+     * Handle status code annotation
      *
      * @param RestDoc $container
      * @param Annotation\StatusCode $annotation
@@ -127,7 +186,7 @@ class ApiDocAnnotationsListener
     }
 
     /**
-     * Handle tag
+     * Handle tag annotation
      *
      * @param RestDoc $container
      * @param Annotation\Tag $annotation

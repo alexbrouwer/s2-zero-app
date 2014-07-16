@@ -29,10 +29,9 @@ class UserController extends BaseController implements ClassResourceInterface
      *
      * @ApiDoc\Api
      * @ApiDoc\Resource
+     * @ApiDoc\Section("Users")
+     * @ApiDoc\Output("array<Zero\UserBundle\Entity\User>")
      * @ApiDoc\StatusCode(200)
-     * @ApiDoc\Filters(
-     *      @ApiDoc\Filter("foo")
-     * )
      *
      * @param Request $request The request object
      *
@@ -47,6 +46,11 @@ class UserController extends BaseController implements ClassResourceInterface
      * Get user
      *
      * @ApiDoc\Api
+     * @ApiDoc\Resource
+     * @ApiDoc\Section("Users")
+     * @ApiDoc\Output("Zero\UserBundle\Entity\User")
+     * @ApiDoc\StatusCode(200, description="Returned when successful")
+     * @ApiDoc\StatusCode(404, description="Returned when user was not found")
      *
      * @param int $userId The userId of the user
      *
@@ -54,11 +58,19 @@ class UserController extends BaseController implements ClassResourceInterface
      */
     public function getAction($userId)
     {
-        return array('user' => $this->getOr404($userId));
+        return $this->getOr404($userId);
     }
 
     /**
      * Create user
+     *
+     * @ApiDoc\Api
+     * @ApiDoc\Resource
+     * @ApiDoc\Section("Users")
+     * @ApiDoc\Input("Zero\UserBundle\Form\UserType")
+     * @ApiDoc\Output("null")
+     * @ApiDoc\StatusCode(201, description="Returned when user created")
+     * @ApiDoc\StatusCode(400, description="Returned when validation errors occurred")
      *
      * @param Request $request The request object
      *
@@ -78,6 +90,15 @@ class UserController extends BaseController implements ClassResourceInterface
 
     /**
      * Update user
+     *
+     * @ApiDoc\Api
+     * @ApiDoc\Resource
+     * @ApiDoc\Section("Users")
+     * @ApiDoc\Input("Zero\UserBundle\Form\UserType")
+     * @ApiDoc\Output("null")
+     * @ApiDoc\StatusCode(204, description="Returned when user is updated")
+     * @ApiDoc\StatusCode(400, description="Returned when validation errors occurred")
+     * @ApiDoc\StatusCode(404, description="Returned when user was not found")
      *
      * @param int $userId The userId of the user
      * @param Request $request The request object
@@ -102,6 +123,15 @@ class UserController extends BaseController implements ClassResourceInterface
     /**
      * Patch user
      *
+     * @ApiDoc\Api
+     * @ApiDoc\Resource
+     * @ApiDoc\Section("Users")
+     * @ApiDoc\Input("Zero\UserBundle\Form\UserType")
+     * @ApiDoc\Output("null")
+     * @ApiDoc\StatusCode(204, description="Returned when user is updated")
+     * @ApiDoc\StatusCode(400, description="Returned when validation errors occurred")
+     * @ApiDoc\StatusCode(404, description="Returned when user was not found")
+     *
      * @param int $userId The userId of the user
      * @param Request $request The request object
      *
@@ -125,6 +155,14 @@ class UserController extends BaseController implements ClassResourceInterface
     /**
      * Delete user
      *
+     * @ApiDoc\Api
+     * @ApiDoc\Resource
+     * @ApiDoc\Section("Users")
+     * @ApiDoc\Input("null")
+     * @ApiDoc\Output("null")
+     * @ApiDoc\StatusCode(204, description="Returned when user is deleted")
+     * @ApiDoc\StatusCode(404, description="Returned when user is not found")
+     *
      * @param int $userId The userId of the user
      *
      * @return FormTypeInterface|View
@@ -141,6 +179,14 @@ class UserController extends BaseController implements ClassResourceInterface
     /**
      * Get groups for user
      *
+     * @ApiDoc\Api
+     * @ApiDoc\Resource
+     * @ApiDoc\Section("Users")
+     * @ApiDoc\Input("null")
+     * @ApiDoc\Output("array<Zero\UserBundle\Entity\User\Group>")
+     * @ApiDoc\StatusCode(200, description="Returned when successful")
+     * @ApiDoc\StatusCode(404, description="Returned when user is not found")
+     *
      * @param int $userId
      *
      * @return array
@@ -154,6 +200,13 @@ class UserController extends BaseController implements ClassResourceInterface
 
     /**
      * Link user to group
+     *
+     * @ApiDoc\Api
+     * @ApiDoc\Section("Users")
+     * @ApiDoc\Input("null")
+     * @ApiDoc\Output("null")
+     * @ApiDoc\StatusCode(200, description="Returned when successful")
+     * @ApiDoc\StatusCode(404, description="Returned when user or group is not found")
      *
      * @param Request $request
      * @param int $userId The identity of the user
@@ -184,6 +237,13 @@ class UserController extends BaseController implements ClassResourceInterface
 
     /**
      * Unlink user to group
+     *
+     * @ApiDoc\Api
+     * @ApiDoc\Section("Users")
+     * @ApiDoc\Input("null")
+     * @ApiDoc\Output("null")
+     * @ApiDoc\StatusCode(200, description="Returned when successful")
+     * @ApiDoc\StatusCode(404, description="Returned when user or group is not found")
      *
      * @param Request $request
      * @param int $userId The identity of the user

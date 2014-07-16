@@ -101,7 +101,43 @@ class ApiDocExtractor
             }
         }
 
-        return $routeDocs;
+        return $this->sortDocs($routeDocs);
+    }
+
+    /**
+     * @param RestDoc[] $docs
+     *
+     * @return RestDoc[]
+     */
+    public function sortDocs(array $docs)
+    {
+        $methodOrder = array('GET', 'POST', 'PUT', 'DELETE');
+
+        usort(
+            $docs,
+            function ($a, $b) use ($methodOrder) {
+                if($a->getRoute()->getPattern() === $b->getRoute()->getPattern()) {
+                    $methodA = array_search($a->getRoute()->getRequirement('_method'), $methodOrder);
+                    $methodB = array_search($b->getRoute()->getRequirement('_method'), $methodOrder);
+
+                    if($methodA === $methodB) {
+                        return strcmp(
+                            $a->getRoute()->getRequirement('_method'),
+                            $b->getRoute()->getRequirement('_method')
+                        );
+                    }
+
+                    return $methodA > $methodB ? 1 : -1;
+                }
+
+                return strcmp(
+                    $a->getRoute()->getPattern(),
+                    $b->getRoute()->getPattern()
+                );
+            }
+        );
+
+        return $docs;
     }
 
     /**

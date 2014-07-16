@@ -3,6 +3,7 @@
 
 namespace Zero\ApiDocBundle\Tests\Listener;
 
+use Zero\ApiDocBundle\Annotation\Api;
 use Zero\ApiDocBundle\Annotation\Deprecated;
 use Zero\ApiDocBundle\Annotation\Description;
 use Zero\ApiDocBundle\Annotation\Filter;
@@ -78,6 +79,18 @@ class ApiDocAnnotationsListenerTest extends \PHPUnit_Framework_TestCase
         $event             = $this->getExtractorEvent(array($unknownAnnotation));
         $event->setContainer($expected);
         $this->listener->onExtractorHandle($event);
+    }
+
+    public function testHandleApiAnnotation()
+    {
+        $expected = new RestDoc;
+
+        $annotation = new Api();
+        $event      = $this->getExtractorEvent(array($annotation));
+        $event->setContainer($expected);
+        $this->listener->onExtractorHandle($event);
+
+        $this->assertEquals($this->container, $event->getContainer());
     }
 
     public function testHandleDeprecatedAnnotation()

@@ -1,41 +1,13 @@
 <?php
 
 
-namespace Zero\ApiDocBundle\Listener;
+namespace Zero\ApiDocBundle\Listener\Parse;
 
 use Zero\ApiDocBundle\Event\ExtractorEvent;
 use Zero\ApiDocBundle\Util\DocCommentExtractor;
 
-class DocBlockListener
+class DescriptionListener
 {
-
-    /**
-     * @var DocCommentExtractor
-     */
-    private $commentExtractor;
-
-    /**
-     * @param DocCommentExtractor $commentExtractor
-     */
-    public function __construct(DocCommentExtractor $commentExtractor)
-    {
-        $this->commentExtractor = $commentExtractor;
-    }
-
-    /**
-     * Handle
-     *
-     * @param ExtractorEvent $event
-     */
-    public function onExtractorHandle(ExtractorEvent $event)
-    {
-        $container = $event->getContainer();
-        $method    = $event->getMethod();
-
-        $documentation = $this->commentExtractor->getDocCommentText($method);
-        $container->setDocumentation($documentation);
-    }
-
     /**
      * Post handle
      *

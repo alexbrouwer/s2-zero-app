@@ -273,6 +273,10 @@ class RestDoc
      */
     public function getInput()
     {
+        if(!is_array($this->input)) {
+            return array('class' => '', 'groups' => array());
+        }
+
         return $this->input;
     }
 
@@ -346,6 +350,10 @@ class RestDoc
      */
     public function getOutput()
     {
+        if(!is_array($this->output)) {
+            return array('class' => '', 'groups' => array());
+        }
+
         return $this->output;
     }
 
