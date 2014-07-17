@@ -1,0 +1,12 @@
+parameters:
+    zero_api_security.authorize.form_type.class: Zero\Bundle\ApiSecurityBundle\Form\Type\AuthorizeFormType
+    zero_api_security.authorize.form_handler.class: Zero\Bundle\ApiSecurityBundle\Form\Handler\AuthorizeFormHandler
+
+services:
+    zero_api_security.authorize.form_type:
+        class: %zero_api_security.authorize.form_type.class%
+
+    zero_api_security.authorize.form_handler:
+        class: %zero_api_security.authorize.form_handler.class%
+        scope: request
+        arguments: [@request, @security.context, @fos_oauth_server.server]

@@ -1,6 +1,6 @@
 <?php
 
-namespace Zero\Bundle\UserBundle\DependencyInjection;
+namespace Zero\Bundle\ApiSecurityBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('zero_user');
+        $rootNode = $treeBuilder->root('zero_api_security');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

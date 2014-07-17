@@ -1,13 +1,13 @@
 <?php
 
-namespace Zero\Bundle\UserBundle\Entity;
+namespace Zero\Bundle\ApiSecurityBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
+use FOS\OAuthServerBundle\Entity\RefreshToken as BaseRefreshToken;
 
 /**
- * User
+ * RefreshToken
  */
-class User extends BaseUser
+class RefreshToken extends BaseRefreshToken
 {
     /**
      * @var integer

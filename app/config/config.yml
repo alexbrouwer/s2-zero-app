@@ -88,6 +88,21 @@ jms_serializer:
     metadata:
         auto_detection: true
 
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Zero\Bundle\UserBundle\Entity\User
+
+fos_oauth_server:
+    db_driver: orm
+    client_class:        Zero\Bundle\ApiSecurityBundle\Entity\Client
+    access_token_class:  Zero\Bundle\ApiSecurityBundle\Entity\AccessToken
+    refresh_token_class: Zero\Bundle\ApiSecurityBundle\Entity\RefreshToken
+    auth_code_class:     Zero\Bundle\ApiSecurityBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager
+
+
 fos_rest:
     param_fetcher_listener: true
     format_listener:

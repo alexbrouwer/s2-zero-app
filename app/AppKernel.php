@@ -23,10 +23,14 @@ class AppKernel extends Kernel
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Alex\AsseticExtraBundle\AlexAsseticExtraBundle(),
             new Zero\Bundle\ApiBundle\ZeroApiBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new Zero\Bundle\UserBundle\ZeroUserBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new Zero\Bundle\ApiSecurityBundle\ZeroApiSecurityBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            $bundles[] = new Acme\TestBundle\AcmeTestBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

@@ -1,13 +1,15 @@
 <?php
 
-namespace Zero\Bundle\UserBundle\Entity;
+namespace Zero\Bundle\ApiSecurityBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
+
+
+use FOS\OAuthServerBundle\Entity\AuthCode as BaseAuthCode;
 
 /**
- * User
+ * AuthCode
  */
-class User extends BaseUser
+class AuthCode extends BaseAuthCode
 {
     /**
      * @var integer

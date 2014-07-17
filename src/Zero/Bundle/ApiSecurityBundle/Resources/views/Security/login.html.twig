@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}ZeroApiSecurityBundle:Security:login{% endblock %}
+
+{% block body %}
+<div class="form">
+    <form id="login" class="vertical" action="{{ url('zero_api_security_login_check') }}" method="post">
+        <h2>OAuth Authentication</h2>
+        {% if error %}
+        <div class="form_error">{{ error }}</div>
+        {% endif %}
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="_username"/>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="_password" />
+        </div>
+        <input type="submit" id="_submit" name="_submit" value="Log in" />
+    </form>
+</div>
+{% endblock %}

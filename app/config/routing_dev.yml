@@ -12,3 +12,7 @@ _configurator:
 
 _main:
     resource: routing.yml
+
+acme_test:
+    resource: "@AcmeTestBundle/Resources/config/routing.yml"
+    prefix:   /
